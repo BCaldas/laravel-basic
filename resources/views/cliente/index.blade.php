@@ -8,7 +8,7 @@
     <ul>
         @foreach($clientes as $cliente)
             <li>
-                <a href="http://catalogobruno.dev/clientes/{{$cliente->id}}">
+                <a href="{!! url("/clientes/{$cliente->id}"); !!}">
                     {{$cliente->nome}}
                 </a>
             </li>

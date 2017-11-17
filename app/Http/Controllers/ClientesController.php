@@ -68,7 +68,7 @@ class ClientesController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        //
+        return view('cliente.edit')->withCliente($cliente);
     }
 
     /**
@@ -78,9 +78,18 @@ class ClientesController extends Controller
      * @param  \App\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cliente $cliente)
+    public function update($id, Request $request)
     {
-        //
+        $cliente = Cliente::find($id);
+        $cliente->nome = $request->input('nome');
+        $cliente->sobrenome = $request->input('sobrenome');
+        $cliente->email = $request->input('email');
+        $cliente->telefone = $request->input('telefone');
+        $cliente->endereco = $request->input('endereco');
+
+        if ($cliente->save()){
+            return redirect('clientes');
+        }
     }
 
     /**

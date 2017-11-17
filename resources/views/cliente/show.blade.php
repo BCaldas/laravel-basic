@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title',$cliente->titulo)
+@section('title',$cliente->nome)
 
 @section('content')
 
@@ -14,6 +14,7 @@
         <li>Adicionado em: {{$cliente->created_at}}</li>
     </ul>
 
+    <a href="{!! action('ClientesController@edit', ['cliente' => $cliente]); !!}">Editar</a>
     <a href="javascript:history.go(-1)">Voltar</a>
 
 @endsection
