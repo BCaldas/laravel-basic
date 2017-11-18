@@ -5,6 +5,9 @@
 @section('content')
 
     <h1>Clientes</h1>
+    @if(Session::has('mensagem'))
+        <div class="alert alert-success">{{Session::get('mensagem')}}</div>
+    @endif
     <ul>
         @foreach($clientes as $cliente)
             <li>

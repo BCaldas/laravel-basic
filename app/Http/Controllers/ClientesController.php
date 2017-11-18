@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cliente;
 use App\Http\Requests\StoreClienteRequest;
 use Illuminate\Http\Request;
+use Session;
 
 class ClientesController extends Controller
 {
@@ -88,7 +89,7 @@ class ClientesController extends Controller
         $cliente->endereco = $request->input('endereco');
 
         if ($cliente->save()){
-            return redirect('clientes');
+            return redirect("clientes/$cliente->id");
         }
     }
 
@@ -98,8 +99,13 @@ class ClientesController extends Controller
      * @param  \App\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cliente $cliente)
+    public function destroy($id)
     {
-        //
+        $cliente = Cliente::find($id);
+
+        if ($cliente->delete()){
+            Session::flash('mensagem', 'Cliente excluído com sucesso.');
+            return redirect('clientes');
+        }
     }
 }

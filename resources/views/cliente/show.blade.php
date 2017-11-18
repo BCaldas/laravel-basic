@@ -14,7 +14,10 @@
         <li>Adicionado em: {{$cliente->created_at}}</li>
     </ul>
 
-    <a href="{!! action('ClientesController@edit', ['cliente' => $cliente]); !!}">Editar</a>
-    <a href="javascript:history.go(-1)">Voltar</a>
+    <a href="{!! action('ClientesController@edit', ['cliente' => $cliente]); !!}" class="btn btn-primary">Editar</a>
+    <a href="{!! action('ClientesController@index') !!}" class="btn btn-primary">Voltar</a>
+    {{Form::open(['route'=>['clientes.destroy',$cliente->id],'method'=>'DELETE'])}}
+    {{Form::submit('Excluir',['class'=>'btn btn-danger'])}}
+    {{Form::close()}}
 
 @endsection
