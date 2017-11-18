@@ -88,6 +88,13 @@ class ClientesController extends Controller
         $cliente->telefone = $request->input('telefone');
         $cliente->endereco = $request->input('endereco');
 
+        if($request->hasFile('foto')){
+            $imagem = $request->file('foto');
+            $nomearquivo = md5($id) .".". $imagem->getClientOriginalExtension();
+            $request->file('foto')->move(public_path('./img/clientes/'),
+                $nomearquivo);
+        }
+
         if ($cliente->save()){
             return redirect("clientes/$cliente->id");
         }

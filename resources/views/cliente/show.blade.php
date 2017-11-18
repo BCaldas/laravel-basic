@@ -13,7 +13,11 @@
         <li>Endereco: {{$cliente->endereco}}</li>
         <li>Adicionado em: {{$cliente->created_at}}</li>
     </ul>
-
+    @if(file_exists("./img/clientes/" . md5($cliente->id) . ".jpg"))
+        <div class='foto'>
+            {{Html::image(asset("img/clientes/" . md5($cliente->id) . ".jpg"))}}
+        </div>
+    @endif
     <a href="{!! action('ClientesController@edit', ['cliente' => $cliente]); !!}" class="btn btn-primary">Editar</a>
     <a href="{!! action('ClientesController@index') !!}" class="btn btn-primary">Voltar</a>
     {{Form::open(['route'=>['clientes.destroy',$cliente->id],'method'=>'DELETE'])}}

@@ -15,7 +15,7 @@
 
     <h1>Editar Cliente: {{$cliente->nome}}</h1>
 
-    {{Form::open(['route'=>['clientes.update',$cliente->id],'method'=>'PUT'])}}
+    {{Form::open(['route'=>['clientes.update',$cliente->id],'enctype'=>'multipart/form-data','method'=>'PUT'])}}
     {{Form::label('nome', 'Nome')}}
     {{Form::text('nome', $cliente->nome,['class' => 'form-control', 'required', 'placeholder' => 'Nome'])}}
     {{Form::label('sobrenome', 'Sobrenome')}}
@@ -25,7 +25,9 @@
     {{Form::label('telefone', 'Telefone')}}
     {{Form::number('telefone', $cliente->telefone,['class' => 'form-control', 'required', 'placeholder' => 'Telefone'])}}
     {{Form::label('endereco', 'Endereço')}}
-    {{Form::text('endereco', $cliente->endereco,['class' => 'form-control', 'placeholder' => 'Endereço'])}}<br>
+    {{Form::text('endereco', $cliente->endereco,['class' => 'form-control', 'placeholder' => 'Endereço'])}}
+    {{Form::label('foto', 'Foto')}}
+    {{Form::file('foto',['class'=>'form-control','id'=>'foto'])}}<br>
     {{Form::submit('Atualizar', ['class' => 'btn btn-primary'])}}
 
 
